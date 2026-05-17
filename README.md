@@ -1,14 +1,4 @@
-
-```
-  ██████╗██╗████████╗ █████╗ ██████╗ ███████╗██╗
- ██╔════╝██║╚══██╔══╝██╔══██╗██╔══██╗██╔════╝██║
- ██║     ██║   ██║   ███████║██║  ██║█████╗  ██║
- ██║     ██║   ██║   ██╔══██║██║  ██║██╔══╝  ██║
- ╚██████╗██║   ██║   ██║  ██║██████╔╝███████╗███████╗
-  ╚═════╝╚═╝   ╚═╝   ╚═╝  ╚═╝╚═════╝ ╚══════╝╚══════╝
-           High-Security Inventory Management
-```
-
+ 
 <div align="center">
 
 [![Rust](https://img.shields.io/badge/rust-1.80+-orange?logo=rust)](https://www.rust-lang.org/)
@@ -21,6 +11,8 @@
 </div>
 
 ---
+<p align="center">
+  <img src="https://i.ibb.co/NMfkdNv/banner.png" alt="profile banner" border="0">
 
 ```
 ╔════════════════════════════════════════════════════════════════════════════╗
@@ -84,9 +76,8 @@
 
 ---
 
-## 01 · Quick Start
+## <img alt="screenshot" src="public/citadelLOGO.png" width="90" height="90"> Quick Start
 
-### Prerequisites
 
 ```
 [✓] Rust (stable >= 1.80)
@@ -146,7 +137,7 @@ strace -e trace=network ./citadel  # Expected: no network syscalls
 
 ---
 
-## 02 · Technology Stack
+## <img alt="screenshot" src="public/citadelLOGO.png" width="90" height="90"> Technology Stack
 
 ```
 ╔══════════════════════╦═════════════════════════════════════════════════╗
@@ -168,7 +159,7 @@ strace -e trace=network ./citadel  # Expected: no network syscalls
 
 ---
 
-## 03 · Architecture
+## <img alt="screenshot" src="public/citadelLOGO.png" width="90" height="90"> Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
@@ -223,7 +214,7 @@ strace -e trace=network ./citadel  # Expected: no network syscalls
 
 ---
 
-## 04 · Data Model
+## <img alt="screenshot" src="public/citadelLOGO.png" width="90" height="90"> Data Model
 
 <details>
 <summary><kbd>▶ Schema (click to expand)</kbd></summary>
@@ -305,7 +296,7 @@ CREATE TABLE transactions (
 
 ---
 
-## 05 · Cryptographic Design
+## <img alt="screenshot" src="public/citadelLOGO.png" width="90" height="90"> Cryptographic Design
 
 ### Key Hierarchy
 
@@ -375,7 +366,7 @@ fn compute_hash_chain(prev_hash: &str, tx_data: &TransactionData) -> String {
 
 ---
 
-## 06 · Security Mechanisms
+## <img alt="screenshot" src="public/citadelLOGO.png" width="90" height="90"> Security Mechanisms
 
 ### Dual-Database Authentication (Plausible Deniability)
 
@@ -467,7 +458,7 @@ RESULT: Device contains only citadel_decoy.db (encrypted, fake data)
 
 ---
 
-## 07 · Threat Model
+## <img alt="screenshot" src="public/citadelLOGO.png" width="90" height="90"> Threat Model
 
 |  ID  |             Vector             |            Adversary           |              Defense               |
 |------|--------------------------------|--------------------------------|------------------------------------|
@@ -482,7 +473,7 @@ RESULT: Device contains only citadel_decoy.db (encrypted, fake data)
 
 ---
 
-## 08 · Building
+## <img alt="screenshot" src="public/citadelLOGO.png" width="90" height="90"> Building
 
 ### Cross-Platform Matrix
 
@@ -537,22 +528,23 @@ cargo audit
 
 ---
 
-## 09 · Testing & Acceptance Criteria
+## <img alt="screenshot" src="public/citadelLOGO.png" width="90" height="90"> Testing & Acceptance Criteria
 
 ### Functional Criteria
 
-|   ID   |                        Criterion                                    |        Method      | Priority |
-|--------|---------------------------------------------------------------------|-------------------------------| 
-| AC-F01 | Login with real password opens real.db with real data               | Manual functional  | CRITICAL |
-| AC-F02 | Duress password opens decoy.db - UI visually identical              | Functional + visual| CRITICAL |
-| AC-F03 | Wrong password returns generic error after backoff                  | Manual functional  | CRITICAL |
-| AC-F04 | ENTRY, EXIT, TRANSFER correctly update node_balances                | Unit + Integration | CRITICAL |
-| AC-F05 | Hash chain detects retroactive tampering of any record              | Injection test     | HIGH     |
-| AC-F06 | Dead Man's Switch terminates session after configured timeout       | Timed test         | CRITICAL |
-| AC-F07 | Panic Button destroys real.db in < 30s for a 100MB file             | Timed + forensic   | CRITICAL |
-| AC-F08 | Binary runs without installation on Win10+, Ubuntu 22.04+, macOS 13+| Clean VM tests     | HIGH     |
-| AC-F09 | No cryptographic key found in RAM dump after logout/wipe            | Volatility 3       | CRITICAL |
-| AC-F10 | real.db remains intact after 100 consecutive decoy login cycles     | Automated stress   | HIGH     |
+|   ID   |                             Criterion                              |             Method             | Priority  |
+|--------|--------------------------------------------------------------------|--------------------------------|-----------|
+| AC-F01 | Login with real password opens real.db with real data              | Manual functional  - CRITICAL  | CRITICAL  |
+| AC-F02 | Duress password opens decoy.db - UI visually identical             | Functional+visual  - CRITICAL  | CRITICAL  |
+| AC-F03 | Wrong password returns generic error after backoff                 | Manual functional  - CRITICAL  | CRITICAL  |
+| AC-F04 | ENTRY, EXIT, TRANSFER correctly update node_balances               | Unit + Integration - CRITICAL  | CRITICAL  |
+| AC-F05 | Hash chain detects retroactive tampering of any record             | Injection test     - HIGH      | HIGH      |
+| AC-F06 | Dead Man's Switch terminates session after configured timeout      | Timed test         - CRITICAL  | CRITICAL  |
+| AC-F07 | Panic Button destroys real.db in < 30s for a 100MB file            | Timed + forensic   - CRITICAL  | CRITICAL  |
+| AC-F08 | Binary runs without installation on Win10+, Ubuntu 22.04+,macOS 13+ | Clean VM tests     - HIGH      | HIGH      |
+| AC-F09 | No cryptographic key found in RAM dump after logout/wipe           | Volatility 3       - CRITICAL  | CRITICAL  |
+| AC-F10 | real.db remains intact after 100 consecutive decoy login cycles    | Automated stress   - HIGH      | HIGH      |
+---
 
 ### Security Criteria
 
@@ -588,7 +580,7 @@ cargo test ac_f07 -- --nocapture
 
 ---
 
-## 10 · Roadmap
+## <img alt="screenshot" src="public/citadelLOGO.png" width="90" height="90"> Roadmap
 
 ```
 ╔════════════════════════╦════════════╦══════════════════════════════════════════╗
@@ -628,7 +620,7 @@ cargo test ac_f07 -- --nocapture
 
 ---
 
-## 11 · Known Limitations
+## <img alt="screenshot" src="public/citadelLOGO.png" width="90" height="90"> Known Limitations
 
 **SSD Wear Leveling:**
 The 3-pass wipe operates at the OS file level. SSDs with wear-leveling
@@ -656,7 +648,7 @@ weakens the plausible deniability guarantee.
 
 ---
 
-## 12 · License
+## <img alt="screenshot" src="public/citadelLOGO.png" width="90" height="90"> License
 
 ```
 ╔══════════════════════════════════════════════════════════════════════════════╗
